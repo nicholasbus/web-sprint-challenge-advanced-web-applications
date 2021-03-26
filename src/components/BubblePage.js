@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { fetchColors } from "../api/fetchColors";
 
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
 
 const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
+
+  useEffect(() => {
+    fetchColors()
+      .then((res) => setColorList(res.data))
+      .catch((err) => console.log(err.response));
+  }, []);
 
   return (
     <>
