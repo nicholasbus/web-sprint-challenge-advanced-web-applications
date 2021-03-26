@@ -19,9 +19,11 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = (e) => {
     e.preventDefault();
+    // making an authorized request to edit the given color based off of the id
     axiosWithAuth()
       .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
       .then((res) => {
+        // upon success, add the newly modified color into state
         updateColors([
           ...colors.filter((color) => color.id !== res.data.id),
           res.data,
@@ -32,9 +34,11 @@ const ColorList = ({ colors, updateColors }) => {
   };
 
   const deleteColor = (color) => {
+    // making an authorized request to delete the given color based off of the id
     axiosWithAuth()
       .delete(`http://localhost:5000/api/colors/${color.id}`)
       .then((res) => {
+        // upon success, set the colors to the previous colors state minus the deleted color
         updateColors([...colors.filter((clr) => clr.id !== Number(res.data))]);
       })
       .catch((err) => console.log(err.response));

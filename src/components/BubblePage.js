@@ -7,10 +7,11 @@ const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
 
   useEffect(() => {
+    // fetchColors function to make get request (../api/fetchColors)
     fetchColors()
       .then((res) => {
+        // set the color list to the returned data
         setColorList(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err.response));
   }, []);

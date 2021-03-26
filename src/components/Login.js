@@ -6,9 +6,15 @@ const initialFormData = {
   username: "",
   password: "",
 };
+
 const Login = () => {
+  // grabbing push method from history object for client navigation
   const { push } = useHistory();
+
+  // state for form data
   const [formData, setFormData] = useState(initialFormData);
+
+  // state to check if there is an error with the form data
   const [err, setErr] = useState(false);
 
   const handleChange = (e) => {
@@ -26,12 +32,14 @@ const Login = () => {
       .post(`http://localhost:5000/api/login`, formData)
       .then((res) => {
         setErr(false);
+        // saving the returned token to local storage
         localStorage.setItem("token", res.data.payload);
         // when you have handled the token, navigate to the BubblePage route
         push("/bubble");
       })
       .catch((err) => {
         console.log(err.response);
+        // setting error state if there is an error with the request
         setErr(true);
       });
   };
