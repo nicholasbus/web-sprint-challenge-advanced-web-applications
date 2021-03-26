@@ -32,6 +32,7 @@ const Bubbles = ({ colors }) => {
                 if (i < colors.length) {
                   return (
                     <Circle
+                      // added a testid to count the bubbles in the tests
                       data-testid='bubble'
                       key={key}
                       cx={x}

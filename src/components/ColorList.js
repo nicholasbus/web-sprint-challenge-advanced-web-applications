@@ -50,6 +50,7 @@ const ColorList = ({ colors, updateColors }) => {
       <ul>
         {colors.map((color) => (
           <li
+            // added a test id to count the colors in the tests
             data-testid='color'
             key={color.color}
             onClick={() => editColor(color)}
