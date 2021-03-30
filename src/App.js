@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import PrivateRoute from "./components/PrivateRoute";
+import BubblePage from "./components/BubblePage";
 import Login from "./components/Login";
 import "./styles.scss";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Route exact path="/" component={Login} />
+      <div className='App'>
+        <Route exact path='/' component={Login} />
+        {/* private route for the bubble page */}
+        <PrivateRoute exact path='/bubble' component={BubblePage} />
       </div>
     </Router>
   );
